@@ -102,8 +102,8 @@ function Nav() {
   return (
     <header className="fixed top-0 z-50 w-full backdrop-blur-md bg-background/70 border-b border-border/50">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-12">
-        <a href="#inicio" className="font-serif text-xl text-deep-green">
-          Red GFU <span className="text-accent-green">Armenia</span>
+        <a href="#inicio" className="flex items-center gap-2">
+          <img src={logoImg} alt="Red GFU Armenia" className="h-10 md:h-11 w-auto" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/70">
           {links.map(([label, href]) => (
