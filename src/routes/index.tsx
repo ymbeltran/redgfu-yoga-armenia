@@ -474,7 +474,7 @@ function Index() {
       </Section>
 
       <footer className="border-t border-border py-10 px-6 text-center text-sm text-muted-foreground">
-        <p className="font-serif text-deep-green text-lg">Red GFU Armenia</p>
+        <img src={logoImg} alt="Red GFU Armenia" className="mx-auto h-12 w-auto mb-3" />
         <p className="mt-2">© {new Date().getFullYear()} · Armenia, Quindío · Colombia</p>
       </footer>
     </main>
