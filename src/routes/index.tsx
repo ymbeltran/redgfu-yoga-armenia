@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
 import heroImg from "@/assets/hero.jpg";
 import logoImg from "@/assets/logo.png";
 import communityImg from "@/assets/community.jpg";
@@ -7,6 +8,42 @@ import natureImg from "@/assets/nature.jpg";
 
 const WHATSAPP_URL =
   "https://wa.me/573006185909?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20actividades%20de%20la%20GFU.";
+
+export const Route = createFileRoute("/")({
+  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Red GFU Armenia — Yoga, meditación y desarrollo humano" },
+      {
+        name: "description",
+        content:
+          "Espacio cultural y humanista en Armenia, Quindío. Yoga, meditación, desarrollo humano y encuentros conscientes para cultivar bienestar integral.",
+      },
+      { property: "og:title", content: "Red GFU Armenia" },
+      {
+        property: "og:description",
+        content:
+          "Un espacio para reconectar contigo y vivir con mayor bienestar.",
+      },
+      { property: "og:image", content: heroImg },
+    ],
+    links: [
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap",
+      },
+    ],
+  }),
+});
 
 function Btn({
   children,
@@ -92,7 +129,7 @@ function Nav() {
   );
 }
 
-export default function App() {
+function Index() {
   const activities = [
     { t: "Yoga", d: "Prácticas para fortalecer el cuerpo, mejorar la flexibilidad, cultivar equilibrio y desarrollar mayor conciencia corporal." },
     { t: "Meditación", d: "Espacios guiados para aquietar la mente, reducir el estrés y desarrollar atención plena." },
