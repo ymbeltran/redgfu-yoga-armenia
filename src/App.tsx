@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 import heroImg from "@/assets/hero.jpg";
 import logoImg from "@/assets/logo.png";
 import communityImg from "@/assets/community.jpg";
@@ -55,6 +57,7 @@ function Section({
 }
 
 function Nav() {
+  const [open, setOpen] = useState(false);
   const links = [
     ["Inicio", "#inicio"],
     ["Quiénes somos", "#quienes"],
@@ -62,10 +65,18 @@ function Nav() {
     ["Ashram", "#ashram"],
     ["Contacto", "#contacto"],
   ];
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <header className="fixed top-0 z-50 w-full backdrop-blur-md bg-background/70 border-b border-border/50">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-12">
-        <a href="#inicio" className="flex items-center gap-2">
+        <a href="#inicio" className="flex items-center gap-2" onClick={() => setOpen(false)}>
           <img src={logoImg} alt="Red GFU Armenia" className="h-10 md:h-11 w-auto" />
         </a>
         <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/70">
@@ -87,6 +98,44 @@ function Nav() {
         >
           WhatsApp
         </a>
+        <button
+          type="button"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-full text-deep-green hover:bg-deep-green/5 transition"
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out border-t border-border/50 bg-background/95 backdrop-blur-md ${
+          open ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="flex flex-col px-6 py-4 gap-1">
+          {links.map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              onClick={() => setOpen(false)}
+              className="py-3 text-base text-foreground/80 hover:text-deep-green border-b border-border/40 last:border-b-0 transition-colors"
+            >
+              {label}
+            </a>
+          ))}
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="mt-4 inline-flex items-center justify-center rounded-full bg-accent-green px-5 py-3 text-sm text-white hover:opacity-90 transition"
+          >
+            WhatsApp
+          </a>
+        </nav>
       </div>
     </header>
   );
